@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		A700A12B1BC2F77100424862 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A700A12A1BC2F77100424862 /* AppDelegate.swift */; };
-		A700A12D1BC2F77100424862 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A700A12C1BC2F77100424862 /* ViewController.swift */; };
 		A700A1301BC2F77100424862 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A700A12E1BC2F77100424862 /* Main.storyboard */; };
 		A700A1331BC2F77100424862 /* ToDoList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A700A1311BC2F77100424862 /* ToDoList.xcdatamodeld */; };
 		A700A1351BC2F77100424862 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A700A1341BC2F77100424862 /* Assets.xcassets */; };
 		A700A1381BC2F77100424862 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A700A1361BC2F77100424862 /* LaunchScreen.storyboard */; };
 		A700A1431BC2F77200424862 /* ToDoListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A700A1421BC2F77200424862 /* ToDoListTests.swift */; };
 		A700A14E1BC2F77200424862 /* ToDoListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A700A14D1BC2F77200424862 /* ToDoListUITests.swift */; };
+		A77AB8DE1BC329DA008AA261 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AB8DD1BC329DA008AA261 /* ListViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +37,6 @@
 /* Begin PBXFileReference section */
 		A700A1271BC2F77100424862 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A700A12A1BC2F77100424862 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A700A12C1BC2F77100424862 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A700A12F1BC2F77100424862 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A700A1321BC2F77100424862 /* ToDoList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ToDoList.xcdatamodel; sourceTree = "<group>"; };
 		A700A1341BC2F77100424862 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +48,7 @@
 		A700A1491BC2F77200424862 /* ToDoListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A700A14D1BC2F77200424862 /* ToDoListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListUITests.swift; sourceTree = "<group>"; };
 		A700A14F1BC2F77200424862 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A77AB8DD1BC329DA008AA261 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListViewController.swift; path = Controllers/ListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +99,11 @@
 		A700A1291BC2F77100424862 /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
-				A700A12A1BC2F77100424862 /* AppDelegate.swift */,
-				A700A12C1BC2F77100424862 /* ViewController.swift */,
-				A700A12E1BC2F77100424862 /* Main.storyboard */,
 				A700A1341BC2F77100424862 /* Assets.xcassets */,
-				A700A1361BC2F77100424862 /* LaunchScreen.storyboard */,
-				A700A1391BC2F77100424862 /* Info.plist */,
-				A700A1311BC2F77100424862 /* ToDoList.xcdatamodeld */,
+				A77AB8E01BC32A00008AA261 /* Controllers */,
+				A77AB8E11BC32A0C008AA261 /* Databases */,
+				A700A12E1BC2F77100424862 /* Main.storyboard */,
+				A77AB8DF1BC329F2008AA261 /* Supporting Files */,
 			);
 			path = ToDoList;
 			sourceTree = "<group>";
@@ -126,6 +124,32 @@
 				A700A14F1BC2F77200424862 /* Info.plist */,
 			);
 			path = ToDoListUITests;
+			sourceTree = "<group>";
+		};
+		A77AB8DF1BC329F2008AA261 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A700A12A1BC2F77100424862 /* AppDelegate.swift */,
+				A700A1361BC2F77100424862 /* LaunchScreen.storyboard */,
+				A700A1391BC2F77100424862 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A77AB8E01BC32A00008AA261 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A77AB8DD1BC329DA008AA261 /* ListViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		A77AB8E11BC32A0C008AA261 /* Databases */ = {
+			isa = PBXGroup;
+			children = (
+				A700A1311BC2F77100424862 /* ToDoList.xcdatamodeld */,
+			);
+			name = Databases;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,8 +285,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A700A12D1BC2F77100424862 /* ViewController.swift in Sources */,
 				A700A1331BC2F77100424862 /* ToDoList.xcdatamodeld in Sources */,
+				A77AB8DE1BC329DA008AA261 /* ListViewController.swift in Sources */,
 				A700A12B1BC2F77100424862 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -490,6 +514,7 @@
 				A700A1541BC2F77200424862 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A700A1551BC2F77200424862 /* Build configuration list for PBXNativeTarget "ToDoListTests" */ = {
 			isa = XCConfigurationList;
@@ -498,6 +523,7 @@
 				A700A1571BC2F77200424862 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A700A1581BC2F77200424862 /* Build configuration list for PBXNativeTarget "ToDoListUITests" */ = {
 			isa = XCConfigurationList;
@@ -506,6 +532,7 @@
 				A700A15A1BC2F77200424862 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
