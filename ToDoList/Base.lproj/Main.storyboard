@@ -42,7 +42,7 @@
                                         <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gaX-mn-We5" id="GHT-RF-WpI">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <animations/>
                                         </tableViewCellContentView>
@@ -65,8 +65,20 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="List" id="8Oc-4M-SPB">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="rPB-Jh-Ksj"/>
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="54z-A3-fTN">
+                            <connections>
+                                <action selector="editItems:" destination="48M-ts-SlJ" id="3Pq-BW-yqV"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="rPB-Jh-Ksj">
+                            <connections>
+                                <action selector="addItem:" destination="48M-ts-SlJ" id="yId-k4-M3z"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="dJl-BQ-xrI" id="Zsx-B5-QRq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ML-VX-egm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
