@@ -1,19 +1,26 @@
 //
-//  ListViewController.swift
+//  ListCoreDataTableViewController.swift
 //  ToDoList
 //
-//  Created by Valentin Varbanov on 10/6/15.
+//  Created by Valentin Varbanov on 10/15/15.
 //  Copyright © 2015 Valentin Varbanov. All rights reserved.
 //
 
 import UIKit
+import CoreData
 
-class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
+class ListCoreDataTableViewController: CoreDataTableViewController {
+
     // MARK: - ViewController Lifecycle
-
+    
+    override func awakeFromNib() {
+        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        managedObjectContext = delegate.managedObjectContext
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
     }
 
@@ -21,22 +28,29 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     // MARK: - Public Interface
     
+    var managedObjectContext: NSManagedObjectContext! {
+        didSet {
+            let request = NSFetchRequest(entityName: List.CoreData.EntityName)
+            request.sortDescriptors = [NSSortDescriptor(key: List.CoreData.SortDescriptor, ascending: true)]
+            fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        }
+    }
     
     // MARK: - Private
     
-    private var names = [String]()
-    
-    // MARK: - Outlets
-    
-    @IBOutlet weak var tableView: UITableView!
+//    private var names = [String]()
     
     struct List {
         static let CellIdentifier = "ItemCell"
+        struct CoreData {
+            static let EntityName = "Item"
+            static let SortDescriptor = "orderNumber"
+        }
     }
     
+    // MARK: - Outlets
     
     // MARK: - Actions
     
@@ -48,8 +62,10 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let saveAction = UIAlertAction(title: "Save", style: .Default) { (action:UIAlertAction) -> Void in
             let textField = alert.textFields!.first
             if let newItem = textField?.text {
-                self.names.append(newItem)
-                self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.names.indexOf(newItem)!, inSection: 0)], withRowAnimation: .Automatic)
+                let item = NSEntityDescription.insertNewObjectForEntityForName(List.CoreData.EntityName, inManagedObjectContext: self.managedObjectContext) as! Item
+                item.name = newItem
+                let lastItem = (self.fetchedResultsController!.sections![0].objects!.last) as! Item
+                item.orderNumber = lastItem.orderNumber!.integerValue + 1
             }
         }
         
@@ -81,48 +97,18 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     // MARK: - UITableViewDataSource
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return names.count
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(List.CellIdentifier, forIndexPath: indexPath)
-        
-        cell.textLabel?.text = names[indexPath.row]
-        
+        let item = fetchedResultsController?.objectAtIndexPath(indexPath)
+        cell.textLabel?.text = item?.name
         return cell
     }
     
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
-        let tmpStorage = names[sourceIndexPath.row]
-        names.removeAtIndex(sourceIndexPath.row)
-        names.insert(tmpStorage, atIndex: destinationIndexPath.row)
-        
-    }
-    
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            names.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            managedObjectContext.deleteObject((fetchedResultsController?.objectAtIndexPath(indexPath))! as! NSManagedObject)
         }
     }
-    
-    // MARK: - UITableViewDelegate
-    
-    
     /*
     // MARK: - Navigation
 

@@ -14,7 +14,10 @@
 		A700A1381BC2F77100424862 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A700A1361BC2F77100424862 /* LaunchScreen.storyboard */; };
 		A700A1431BC2F77200424862 /* ToDoListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A700A1421BC2F77200424862 /* ToDoListTests.swift */; };
 		A700A14E1BC2F77200424862 /* ToDoListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A700A14D1BC2F77200424862 /* ToDoListUITests.swift */; };
-		A77AB8DE1BC329DA008AA261 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77AB8DD1BC329DA008AA261 /* ListViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		A7192E241BCC56050053F09A /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7192E221BCC56050053F09A /* Item+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		A7192E251BCC56050053F09A /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7192E231BCC56050053F09A /* Item.swift */; settings = {ASSET_TAGS = (); }; };
+		A7192E2E1BCC57600053F09A /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7192E2D1BCC57600053F09A /* CoreDataTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		A76035421BD0228C00FFB478 /* ListCoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76035411BD0228C00FFB478 /* ListCoreDataTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +51,10 @@
 		A700A1491BC2F77200424862 /* ToDoListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A700A14D1BC2F77200424862 /* ToDoListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListUITests.swift; sourceTree = "<group>"; };
 		A700A14F1BC2F77200424862 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A77AB8DD1BC329DA008AA261 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListViewController.swift; path = Controllers/ListViewController.swift; sourceTree = "<group>"; };
+		A7192E221BCC56050053F09A /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Item+CoreDataProperties.swift"; path = "Databases/Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A7192E231BCC56050053F09A /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Item.swift; path = Databases/Item.swift; sourceTree = "<group>"; };
+		A7192E2D1BCC57600053F09A /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataTableViewController.swift; path = Controllers/CoreDataTableViewController.swift; sourceTree = "<group>"; };
+		A76035411BD0228C00FFB478 /* ListCoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListCoreDataTableViewController.swift; path = Controllers/ListCoreDataTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,7 +145,8 @@
 		A77AB8E01BC32A00008AA261 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				A77AB8DD1BC329DA008AA261 /* ListViewController.swift */,
+				A7192E2D1BCC57600053F09A /* CoreDataTableViewController.swift */,
+				A76035411BD0228C00FFB478 /* ListCoreDataTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -147,6 +154,8 @@
 		A77AB8E11BC32A0C008AA261 /* Databases */ = {
 			isa = PBXGroup;
 			children = (
+				A7192E221BCC56050053F09A /* Item+CoreDataProperties.swift */,
+				A7192E231BCC56050053F09A /* Item.swift */,
 				A700A1311BC2F77100424862 /* ToDoList.xcdatamodeld */,
 			);
 			name = Databases;
@@ -214,6 +223,7 @@
 		A700A11F1BC2F77100424862 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Valentin Varbanov";
 				TargetAttributes = {
@@ -285,9 +295,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7192E251BCC56050053F09A /* Item.swift in Sources */,
 				A700A1331BC2F77100424862 /* ToDoList.xcdatamodeld in Sources */,
-				A77AB8DE1BC329DA008AA261 /* ListViewController.swift in Sources */,
+				A7192E2E1BCC57600053F09A /* CoreDataTableViewController.swift in Sources */,
+				A7192E241BCC56050053F09A /* Item+CoreDataProperties.swift in Sources */,
 				A700A12B1BC2F77100424862 /* AppDelegate.swift in Sources */,
+				A76035421BD0228C00FFB478 /* ListCoreDataTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +442,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ToDoList/Info.plist;
@@ -436,6 +450,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.valentinvarbanov.ToDoList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -443,6 +458,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ToDoList/Info.plist;
