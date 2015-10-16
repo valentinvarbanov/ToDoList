@@ -14,13 +14,13 @@ class ListCoreDataTableViewController: CoreDataTableViewController {
     // MARK: - ViewController Lifecycle
     
     override func awakeFromNib() {
+        super.awakeFromNib()
         let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         managedObjectContext = delegate.managedObjectContext
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
@@ -84,6 +84,7 @@ class ListCoreDataTableViewController: CoreDataTableViewController {
     
     @IBAction func editItems(sender: UIBarButtonItem) {
         tableView.setEditing(!tableView.editing, animated: true)
+        NSLog("Number of rows: \(self.tableView(tableView, numberOfRowsInSection: 0))")
         switch sender.style {
         case .Plain:
             navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "editItems:")
@@ -108,6 +109,25 @@ class ListCoreDataTableViewController: CoreDataTableViewController {
         if editingStyle == .Delete {
             managedObjectContext.deleteObject((fetchedResultsController?.objectAtIndexPath(indexPath))! as! NSManagedObject)
         }
+    }
+    
+    override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+        
+        userDrivenDataModelChange = true
+        
+        var list = fetchedResultsController?.fetchedObjects as! [Item]
+        let itemToMove = list[sourceIndexPath.row]
+        list.removeAtIndex(sourceIndexPath.row)
+        list.insert(itemToMove, atIndex: destinationIndexPath.row)
+        
+        for (index, object) in list.enumerate() {
+            let item = object 
+            item.orderNumber = index
+        }
+        
+        (UIApplication.sharedApplication().delegate as! AppDelegate).saveContext()
+        
+        userDrivenDataModelChange = false
     }
     /*
     // MARK: - Navigation

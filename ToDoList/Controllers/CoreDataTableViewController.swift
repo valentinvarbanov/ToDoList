@@ -46,6 +46,8 @@ class CoreDataTableViewController: UITableViewController, NSFetchedResultsContro
         self.tableView.reloadData()
     }
     
+    var userDrivenDataModelChange = false
+    
     // MARK: - Private
     
     private func setUpFetchedResultsController() {
@@ -130,10 +132,16 @@ class CoreDataTableViewController: UITableViewController, NSFetchedResultsContro
     
     // MARK: - Fetched results controller delegate
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        if userDrivenDataModelChange == true {
+            return
+        }
         tableView.beginUpdates()
     }
     
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        if userDrivenDataModelChange == true {
+            return
+        }
         tableView.endUpdates()
     }
     
@@ -153,6 +161,9 @@ class CoreDataTableViewController: UITableViewController, NSFetchedResultsContro
     }
     
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        if userDrivenDataModelChange == true {
+            return
+        }
         switch type {
         case .Insert:
             tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Automatic)
